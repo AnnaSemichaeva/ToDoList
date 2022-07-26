@@ -8,6 +8,13 @@
 import UIKit
 
 class TableViewController: UITableViewController {
+    
+    
+    @IBAction func pushAddAction(_ sender: Any) {
+        addItem(nameItem: "New Item")
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +35,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return ToDoItems.count
+        return toDoItems.count
     }
 
     
@@ -36,7 +43,7 @@ class TableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text =  ToDoItems[indexPath.row]
+        cell.textLabel?.text =  toDoItems[indexPath.row]
 
         // Configure the cell...
 
