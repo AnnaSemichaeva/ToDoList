@@ -12,7 +12,7 @@ class TableViewController: UITableViewController {
     
     @IBAction func pushAddAction(_ sender: Any) {
         addItem(nameItem: "New Item")
-        print(toDoItems)
+        //print(toDoItems)
         tableView.reloadData()
     }
     
@@ -45,16 +45,13 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let currentItem = toDoItems[indexPath.row]
-        
-        cell.textLabel?.text =  currentItem["Name"] as? String
+        cell.textLabel?.text = currentItem["Name"] as? String
         
         if (currentItem["isCompleted"] as? Bool) == true {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
         }
-
-        // Configure the cell...
 
         return cell
     }
@@ -80,7 +77,22 @@ class TableViewController: UITableViewController {
         }    
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if changeState(at: indexPath.row) {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
